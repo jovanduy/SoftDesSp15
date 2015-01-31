@@ -28,9 +28,15 @@ def get_complement(nucleotide):
     'T'
     >>> get_complement('C')
     'G'
+        Added tests for T and G just in case.
+    >>> get_complement('T')
+    'A'
+    >>> get_complement('G')
+    'C'
     """
     # TODO: implement this
-    pass
+    complements = {'A': 'T', 'T': 'A', 'C': 'G', 'G':'C'}
+    return complements[nucleotide]
 
 def get_reverse_complement(dna):
     """ Computes the reverse complementary sequence of DNA for the specfied DNA
