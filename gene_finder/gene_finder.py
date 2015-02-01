@@ -2,7 +2,7 @@
 """
 Created on Sun Feb  2 11:24:42 2014
 
-@author: YOUR NAME HERE
+@author: Jordan Van Duyne
 
 """
 
@@ -44,13 +44,19 @@ def get_reverse_complement(dna):
     
         dna: a DNA sequence represented as a string
         returns: the reverse complementary DNA sequence represented as a string
+        I assume that these two tests are already good enough; this function
+        either works or does not work (there are no alternate types ofsituations 
+        to test).
     >>> get_reverse_complement("ATGCCCGCTTT")
     'AAAGCGGGCAT'
     >>> get_reverse_complement("CCGCGTTCA")
     'TGAACGCGG'
     """
     # TODO: implement this
-    pass
+    reverse_complement=''
+    for i in range(len(dna)):
+        reverse_complement = get_complement(dna[i]) + reverse_complement
+    return reverse_complement
 
 def rest_of_ORF(dna):
     """ Takes a DNA sequence that is assumed to begin with a start codon and returns
@@ -63,9 +69,23 @@ def rest_of_ORF(dna):
     'ATG'
     >>> rest_of_ORF("ATGAGATAGG")
     'ATGAGA'
+        Added test without stop codon to see if it prints the entire string.
+    >>> rest_of_ORF("ATGAAATTTAGAA")
+    'ATGAAATTTAGAA'
     """
     # TODO: implement this
-    pass
+    orf = dna[0:3]
+    i = 3
+    while i < len(dna):
+        if dna[i:i+3] == 'TAG':
+            break
+        elif dna[i:i+3] == 'TAA':
+            break
+        elif dna[i:i+3] == 'TGA':
+            break
+        orf = orf + dna[i:i+3]
+        i += 3
+    return orf
 
 def find_all_ORFs_oneframe(dna):
     """ Finds all non-nested open reading frames in the given DNA sequence and returns
@@ -80,7 +100,13 @@ def find_all_ORFs_oneframe(dna):
     ['ATGCATGAATGTAGA', 'ATGTGCCC']
     """
     # TODO: implement this
-    pass
+    orfs = []
+    for i in range(0, len(dna), 3):
+        if dna[i:i+3] == 'ATG':
+            orfs.append(rest_of_ORF(dna[i:]))
+            i += len(rest_of_ORF(dna[i:]))
+    return orfs
+
 
 def find_all_ORFs(dna):
     """ Finds all non-nested open reading frames in the given DNA sequence in all 3
@@ -95,7 +121,13 @@ def find_all_ORFs(dna):
     ['ATGCATGAATGTAG', 'ATGAATGTAG', 'ATG']
     """
     # TODO: implement this
-    pass
+    # orfs = []
+    # for i in range(3):
+    #     for j in range(len(find_all_ORFs_oneframe(dna[i:]))):
+    #         orfs.append(find_all_ORFs_oneframe(dna[i:])[j])
+    # return orfs
+    return [find_all_ORFs_oneframe(dna[i:])[j] for i in range(3) for j in range(len(find_all_ORFs_oneframe(dna[i:])))]
+
 
 def find_all_ORFs_both_strands(dna):
     """ Finds all non-nested open reading frames in the given DNA sequence on both
