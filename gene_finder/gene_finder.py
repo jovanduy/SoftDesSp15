@@ -81,11 +81,7 @@ def rest_of_ORF(dna):
     orf = dna[0:3]
     i = 3
     while i < len(dna):
-        if dna[i:i+3] == 'TAG':
-            break
-        elif dna[i:i+3] == 'TAA':
-            break
-        elif dna[i:i+3] == 'TGA':
+        if (dna[i:i+3] == 'TAG') or (dna[i:i+3] == 'TAA') or (dna[i:i+3] == 'TGA'):
             break
         orf = orf + dna[i:i+3]
         i += 3
@@ -160,51 +156,76 @@ def find_all_ORFs_both_strands(dna):
     return orfs
 
 
-# def longest_ORF(dna):
-#     """ Finds the longest ORF on both strands of the specified DNA and returns it
-#         as a string
-#     >>> longest_ORF("ATGCGAATGTAGCATCAAA")
-#     'ATGCTACATTCGCAT'
-#     """
-#     # TODO: implement this
-#     pass
+def longest_ORF(dna):
+    """ Finds the longest ORF on both strands of the specified DNA and returns it
+        as a string
+    >>> longest_ORF("ATGCGAATGTAGCATCAAA")
+    'ATGCTACATTCGCAT'
+    """
+    # TODO: implement this
+    ORFs = find_all_ORFs_both_strands(dna)
+    longest = ORFs[0]
+    for i in range(1, len(ORFs)):
+        if len(ORFs[i]) > len(ORFs[i-1]):
+            longest = ORFs[i]
+    return longest
 
 
-# def longest_ORF_noncoding(dna, num_trials):
-#     """ Computes the maximum length of the longest ORF over num_trials shuffles
-#         of the specfied DNA sequence
+def longest_ORF_noncoding(dna, num_trials):
+    """ Computes the maximum length of the longest ORF over num_trials shuffles
+        of the specfied DNA sequence
         
-#         dna: a DNA sequence
-#         num_trials: the number of random shuffles
-#         returns: the maximum length longest ORF """
-#     # TODO: implement this
-#     pass
+        dna: a DNA sequence
+        num_trials: the number of random shuffles
+        returns: the maximum length longest ORF
+        No unit test because you can't know what it will return since dna is
+        randomly shuffled each time you call this function """
+    # TODO: implement this
+    ORF = ''
+    for i in range(num_trials):
+        shuffled = longest_ORF(shuffle_string(dna))
+        if len(shuffled) > len(ORF):
+            ORF = shuffled
+    return shuffled
 
-# def coding_strand_to_AA(dna):
-#     """ Computes the Protein encoded by a sequence of DNA.  This function
-#         does not check for start and stop codons (it assumes that the input
-#         DNA sequence represents an protein coding region).
+def coding_strand_to_AA(dna):
+    """ Computes the Protein encoded by a sequence of DNA.  This function
+        does not check for start and stop codons (it assumes that the input
+        DNA sequence represents an protein coding region).
         
-#         dna: a DNA sequence represented as a string
-#         returns: a string containing the sequence of amino acids encoded by the
-#                  the input DNA fragment
+        dna: a DNA sequence represented as a string
+        returns: a string containing the sequence of amino acids encoded by the
+                 the input DNA fragment
 
-#         >>> coding_strand_to_AA("ATGCGA")
-#         'MR'
-#         >>> coding_strand_to_AA("ATGCCCGCTTT")
-#         'MPA'
-#     """
-#     # TODO: implement this
-#     pass
+        >>> coding_strand_to_AA("ATGCGA")
+        'MR'
+        >>> coding_strand_to_AA("ATGCCCGCTTT")
+        'MPA'
+    """
+    # TODO: implement this
+    AAs = ''
+    for i in range(0, len(dna), 3):
+        if len(dna)/3.0 != 0:
+            if i >= len(dna) - 2:
+                break
+        AAs += aa_table[dna[i:i+3]]
+    return AAs
 
-# def gene_finder(dna):
-#     """ Returns the amino acid sequences that are likely coded by the specified dna
+def gene_finder(dna):
+    """ Returns the amino acid sequences that are likely coded by the specified dna
         
-#         dna: a DNA sequence
-#         returns: a list of all amino acid sequences coded by the sequence dna.
-#     """
-#     # TODO: implement this
-#     pass
+        dna: a DNA sequence
+        returns: a list of all amino acid sequences coded by the sequence dna.
+    """
+    # TODO: implement this
+    threshold = len(longest_ORF_noncoding(dna, 1500))
+    all_ORFs = find_all_ORFs_both_strands(dna)
+    AAs = []
+    for i in range(len(all_ORFs)):
+        if len(all_ORFs[i]) > threshold:
+            AAs.append(coding_strand_to_AA(all_ORFs[i]))
+    return AAs
+
 
 if __name__ == "__main__":
     import doctest
