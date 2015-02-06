@@ -48,7 +48,7 @@ def get_reverse_complement(dna):
         dna: a DNA sequence represented as a string
         returns: the reverse complementary DNA sequence represented as a string
         I assume that these two tests are already good enough; this function
-        either works or does not work (there are no alternate types ofsituations 
+        either works or does not work (there are no alternate types of situations 
         to test).
     >>> get_reverse_complement("ATGCCCGCTTT")
     'AAAGCGGGCAT'
@@ -110,8 +110,9 @@ def find_all_ORFs_oneframe(dna):
     i = 0
     while i < len(dna):
         if dna[i:i+3] == 'ATG':
-            orfs.append(rest_of_ORF(dna[i:]))
-            i += len(rest_of_ORF(dna[i:]))
+            orf = rest_of_ORF(dna[i:])
+            orfs.append(orf)
+            i += len(orf)
         else:
             i += 3
     return orfs
@@ -132,14 +133,14 @@ def find_all_ORFs(dna):
     ['ATGCATGAATGTAG', 'ATGAATGTAG', 'ATG']
     """
     # TODO: implement this
-    # orfs = []
-    # for i in range(3):
-    #     for j in range(len(find_all_ORFs_oneframe(dna[i:]))):
-    #         orfs.append(find_all_ORFs_oneframe(dna[i:])[j])
-    # return orfs
+    orfs = []
+    for i in range(3):
+        orf_list = find_all_ORFs_oneframe(dna[i:])
+        for j in range(len(orf_list)):
+            orfs.append(orf_list[j])
+    return orfs
     #reduce(lambda acc, el: acc+el, find_all_ORFs_oneframe)
-    return [find_all_ORFs_oneframe(dna[i:])[j] for i in range(3) for j in range(len(find_all_ORFs_oneframe(dna[i:])))]
-    # FIX THIS ONE
+    # return [find_all_ORFs_oneframe(dna[i:])[j] for i in range(3) for j in range(len(find_all_ORFs_oneframe(dna[i:])))]
 
 def find_all_ORFs_both_strands(dna):
     """ Finds all non-nested open reading frames in the given DNA sequence on both
@@ -166,12 +167,11 @@ def longest_ORF(dna):
     """
     # TODO: implement this
     ORFs = find_all_ORFs_both_strands(dna)
-    longest = ORFs[1]
+    longest = ORFs[0]
     for i in range(len(ORFs)):
         if len(ORFs[i]) > len(longest):
             longest = ORFs[i]
     return longest
-    # FIX THIS ONE
 
 
 def longest_ORF_noncoding(dna, num_trials):
