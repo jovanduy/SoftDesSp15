@@ -1,0 +1,78 @@
+{\rtf1\ansi\ansicpg1252\cocoartf1344\cocoasubrtf720
+{\fonttbl\f0\fswiss\fcharset0 ArialMT;}
+{\colortbl;\red255\green255\blue255;\red82\green57\blue135;\red204\green214\blue220;\red40\green82\blue135;
+}
+\margl1440\margr1440\vieww17080\viewh8500\viewkind0
+\deftab720
+\pard\pardeftab720\sl371
+{\field{\*\fldinst{HYPERLINK "http://blast.ncbi.nlm.nih.gov/Blast.cgi#alnHdr_445980879"}}{\fldrslt 
+\f0\fs24 \cf2 \cb3 \expnd0\expndtw0\kerning0
+\ul \ulc2 type III secretion system protein SpaO [Salmonella enterica]}}
+\f0\fs24 \cb3 \expnd0\expndtw0\kerning0
+   613   613   100%   0.0   100%    {\field{\*\fldinst{HYPERLINK "http://www.ncbi.nlm.nih.gov/protein/445980879?report=genbank&log$=prottop&blast_rank=1&RID=DDDY0TWX014"}}{\fldrslt \cf4 \cb1 \expnd0\expndtw0\kerning0
+\ul \ulc4 WP_000058734.1}}\cf4 \cb1 \expnd0\expndtw0\kerning0
+\ul \ulc4 \
+\pard\pardeftab720\sl371
+\cf0 \expnd0\expndtw0\kerning0
+\ulnone This is a surface presentation of antigens. It is a type III secretion protein Q. It is used to transport virulence factors from the pathogen directly into the host cell and is only triggered when the bacterium comes into close contact with the host.\
+\
+\pard\pardeftab720\sl371
+{\field{\*\fldinst{HYPERLINK "http://blast.ncbi.nlm.nih.gov/Blast.cgi#alnHdr_446019864"}}{\fldrslt \cf2 \cb3 \expnd0\expndtw0\kerning0
+\ul \ulc2 type III secretion system protein SpaS [Salmonella enterica]}}\cb3 \expnd0\expndtw0\kerning0
+   724   724   100%   0.0   100%   {\field{\*\fldinst{HYPERLINK "http://www.ncbi.nlm.nih.gov/protein/446019864?report=genbank&log$=prottop&blast_rank=1&RID=DDDZKRVM014"}}{\fldrslt \cf4 \cb1 \expnd0\expndtw0\kerning0
+\ul WP_000097719.1}}\cf4 \cb1 \expnd0\expndtw0\kerning0
+\ul \
+\pard\pardeftab720\sl371
+\cf0 \expnd0\expndtw0\kerning0
+\ulnone This is a surface presentation of antigens. It is a type III secretion protein U. It functions as a switch.\
+\
+\pard\pardeftab720\sl371
+{\field{\*\fldinst{HYPERLINK "http://blast.ncbi.nlm.nih.gov/Blast.cgi#alnHdr_694228539"}}{\fldrslt \cf2 \cb3 \expnd0\expndtw0\kerning0
+\ul \ulc2 surface presentation of antigens [Salmonella enterica]}}\cb3 \expnd0\expndtw0\kerning0
+   573   573   100%   0.0   100%   {\field{\*\fldinst{HYPERLINK "http://www.ncbi.nlm.nih.gov/protein/694228539?report=genbank&log$=prottop&blast_rank=1&RID=DDE09JBE015"}}{\fldrslt \cf4 \cb1 \expnd0\expndtw0\kerning0
+\ul WP_032488261.1}}\cf4 \cb1 \expnd0\expndtw0\kerning0
+\ul \
+\pard\pardeftab720\sl371
+\cf0 \expnd0\expndtw0\kerning0
+\ulnone This presents antigens. \cf4 \expnd0\expndtw0\kerning0
+\ul \
+\
+\cf0 \expnd0\expndtw0\kerning0
+\ulnone (The second hit from the third sequence of amino acids that I found is: \
+\pard\pardeftab720\sl371
+{\field{\*\fldinst{HYPERLINK "http://blast.ncbi.nlm.nih.gov/Blast.cgi#alnHdr_487406678"}}{\fldrslt \cf2 \cb3 \expnd0\expndtw0\kerning0
+\ul \ulc2 ATP synthase SpaL [Salmonella enterica]}}\cb3 \expnd0\expndtw0\kerning0
+   573   573   100%   0.0   100%   {\field{\*\fldinst{HYPERLINK "http://www.ncbi.nlm.nih.gov/protein/694228539?report=genbank&log$=prottop&blast_rank=1&RID=DDE09JBE015"}}{\fldrslt \cf4 \cb1 \expnd0\expndtw0\kerning0
+\ul WP_032488261.1}}\cf4 \cb1 \expnd0\expndtw0\kerning0
+\ul \
+\pard\pardeftab720\sl371
+\cf0 \expnd0\expndtw0\kerning0
+\ulnone This is an enzyme which is necessary for 
+\i \expnd0\expndtw0\kerning0
+Salmonella typhimurium 
+\i0 \expnd0\expndtw0\kerning0
+to enter into cultured epithelial cells. It is a catalytic subunit of a protein translocase and it may energize the protein export apparatus, which is necessary for the surface presentation of stuff that is needed for the salmonella to enter into a mammal cell.)\
+\pard\pardeftab720\sl371
+\cf4 \expnd0\expndtw0\kerning0
+\ul \
+\pard\pardeftab720\sl371
+{\field{\*\fldinst{HYPERLINK "http://blast.ncbi.nlm.nih.gov/Blast.cgi#alnHdr_446425243"}}{\fldrslt \cf2 \cb3 \expnd0\expndtw0\kerning0
+\ulc2 antigen presentation protein SpaN [Salmonella enterica]}}\cf0 \cb3 \expnd0\expndtw0\kerning0
+\ulnone    687   687   100%   0.0   100%\cf2 \expnd0\expndtw0\kerning0
+   {\field{\*\fldinst{HYPERLINK "http://www.ncbi.nlm.nih.gov/protein/446425243?report=genbank&log$=prottop&blast_rank=1&RID=DDE0SAG5015"}}{\fldrslt \cf4 \cb1 \expnd0\expndtw0\kerning0
+\ul WP_000503098.1}}\cf4 \cb1 \expnd0\expndtw0\kerning0
+\ul \
+\pard\pardeftab720\sl371
+\cf0 \expnd0\expndtw0\kerning0
+\ulnone This protein also presents antigens on a cell.\cf4 \expnd0\expndtw0\kerning0
+\ul \
+\
+\pard\pardeftab720\sl371
+{\field{\*\fldinst{HYPERLINK "http://blast.ncbi.nlm.nih.gov/Blast.cgi#alnHdr_446421110"}}{\fldrslt \cf2 \cb3 \expnd0\expndtw0\kerning0
+\ulc2 type III secretion system protein SpaR [Salmonella enterica]}}\cf0 \cb3 \expnd0\expndtw0\kerning0
+\ulnone    525   525   100%   0.0   100%   {\field{\*\fldinst{HYPERLINK "http://www.ncbi.nlm.nih.gov/protein/446421110?report=genbank&log$=prottop&blast_rank=1&RID=DDE16Y9V015"}}{\fldrslt \cf4 \cb1 \expnd0\expndtw0\kerning0
+\ul WP_000498965.1}}\cf4 \cb1 \expnd0\expndtw0\kerning0
+\ul \
+\pard\pardeftab720\sl371
+\cf0 \expnd0\expndtw0\kerning0
+\ulnone This is used to transport virulence factors from the pathogen directly into the host cell and is only triggered when the bacterium comes close to the host. The family of type III inner membrane proteins are used as structural moieties in a complex with other subunits, and one such set of inner membrane proteins is labeled R.}

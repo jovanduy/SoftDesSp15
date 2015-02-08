@@ -11,6 +11,7 @@ from amino_acids import aa, codons, aa_table
 import random
 from load import load_seq
 DNA = load_seq("./data/X73525.fa")
+from itertools import chain
 
 def shuffle_string(s):
     """ Shuffles the characters in the input string
@@ -82,9 +83,10 @@ def rest_of_ORF(dna):
     orf = dna[0:3]
     i = 3
     while i < len(dna):
-        if (dna[i:i+3] == 'TAG') or (dna[i:i+3] == 'TAA') or (dna[i:i+3] == 'TGA'):
+        codon = dna[i:i+3]
+        if (codon == 'TAG') or (codon == 'TAA') or (codon == 'TGA'):
             break
-        orf += dna[i:i+3]
+        orf += codon
         i += 3
     return orf
 
@@ -139,7 +141,6 @@ def find_all_ORFs(dna):
         for j in range(len(orf_list)):
             orfs.append(orf_list[j])
     return orfs
-    #reduce(lambda acc, el: acc+el, find_all_ORFs_oneframe)
     # return [find_all_ORFs_oneframe(dna[i:])[j] for i in range(3) for j in range(len(find_all_ORFs_oneframe(dna[i:])))]
 
 def find_all_ORFs_both_strands(dna):
@@ -164,6 +165,11 @@ def longest_ORF(dna):
         as a string
     >>> longest_ORF("ATGCGAATGTAGCATCAAA")
     'ATGCTACATTCGCAT'
+
+    Since the given test has the longest ORF on the reverse strand, I included a test
+    in which the longest ORF is in the original strand.
+    >>> longest_ORF("TTTGATGCTACATTCGCAT")
+    'ATGCTACATTCGCAT'
     """
     # TODO: implement this
     ORFs = find_all_ORFs_both_strands(dna)
@@ -182,7 +188,12 @@ def longest_ORF_noncoding(dna, num_trials):
         num_trials: the number of random shuffles
         returns: the maximum length longest ORF
         No unit test because you can't know what it will return since dna is
-        randomly shuffled each time you call this function """
+        randomly shuffled each time you call this function. However, I did test
+        it by having it print the length of the longest ORF in each trial it ran
+        and then print the return value of longest_ORF_noncoding to make sure that
+        it returns the length of the longest ORF over all trials (and it passed 
+        this test).
+    """
     # TODO: implement this
     # ORF = ''
     # for i in range(num_trials):
@@ -210,6 +221,15 @@ def coding_strand_to_AA(dna):
         'MR'
         >>> coding_strand_to_AA("ATGCCCGCTTT")
         'MPA'
+
+        I added a test to make sure the function behaves correctly when there is
+        one more nucleotide than a multiple of three in the input ORF (the first 
+        test's input ORF has length that is a multiple of 3, the second test's input 
+        has length of a multiple of three plus two, while this third test's input 
+        will have length of a multiple of three plus one).
+        
+        >>> coding_strand_to_AA("ATGCCCGCTT")
+        'MPA'
     """
     # TODO: implement this
     AAs = ''
@@ -220,23 +240,24 @@ def coding_strand_to_AA(dna):
         AAs += aa_table[dna[i:i+3]]
     return AAs
 
-def gene_finder(dna, threshold):
+def gene_finder(dna):
     """ Returns the amino acid sequences that are likely coded by the specified dna
         
         dna: a DNA sequence
         returns: a list of all amino acid sequences coded by the sequence dna.
     """
     # TODO: implement this
+    threshold = longest_ORF_noncoding(dna, 1500)
     all_ORFs = find_all_ORFs_both_strands(dna)
     AAs = []
     for i in range(len(all_ORFs)):
-        if len(all_ORFs[i]) > threshold:
-            AAs.append(coding_strand_to_AA(all_ORFs[i]))
+        orf = all_ORFs[i]
+        if len(orf) > threshold:
+            AAs.append(coding_strand_to_AA(orf))
     return AAs
 
 
 if __name__ == "__main__":
-    threshold = 750
-    print gene_finder(DNA, threshold)
+    print gene_finder(DNA)
     import doctest
     doctest.testmod()
