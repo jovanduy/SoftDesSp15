@@ -1,4 +1,4 @@
-""" TODO: Put your header comment here """
+""" @author: Jordan Van Duyne """
 
 import random
 import math
@@ -18,12 +18,15 @@ def build_random_function(min_depth, max_depth):
     """
     # TODO: implement this
     result = []
-    functions = {0: "prod", 1: "avg", 2: "cos_pi", 3:"sin_pi", 4:"x", 5: "y"}
-    num = random.randint(min_depth, max_depth)
-    if num == 1:
-        result.append(functions[random.randint(4,5)])
+    functions = {0: "prod", 1: "avg", 2: "cos_pi", 3:"sin_pi", 4: "x^2", 5:"y^2", 6:"x", 7: "y"}
+    if min_depth == max_depth:
+        num = min_depth
     else:
-        func = functions[random.randint(0,5)]
+        num = random.randint(min_depth, max_depth)
+    if num == 1:
+        result.append(functions[random.randint(6,7)])
+    else:
+        func = functions[random.randint(0,7)]
         result.append(func)
         result.append(build_random_function(num-1, num-1))
         result.append(build_random_function(num-1, num-1))
@@ -59,6 +62,10 @@ def evaluate_random_function(f, x, y):
             return math.cos(math.pi*x)
         elif f == "sin_pi":
             return math.sin(math.pi*x)
+        elif f == "x^2":
+            return x**2
+        elif f == "y^2":
+            return y**2
         elif f == "x":
             return x
         elif f == "y":
@@ -72,6 +79,10 @@ def evaluate_random_function(f, x, y):
             return math.cos(math.pi*x)
         elif f == ["sin_pi"]:
             return math.sin(math.pi*x)
+        elif f == "x^2":
+            return x**2
+        elif f == "y^2":
+            return y**2
         elif f == ["x"]:
             return x
         elif f == ["y"]:
@@ -189,9 +200,9 @@ def generate_art(filename, x_size=350, y_size=350):
     # red_function = ["x"]
     # green_function = ["y"]
     # blue_function = ["x"]
-    red_function = build_random_function(7, 9)
-    green_function = build_random_function(7, 9)
-    blue_function = build_random_function(7, 9)
+    red_function = build_random_function(10, 15)
+    green_function = build_random_function(10, 15)
+    blue_function = build_random_function(10, 15)
 
     # Create image and loop over all pixels
     im = Image.new("RGB", (x_size, y_size))
@@ -216,7 +227,7 @@ if __name__ == '__main__':
     # Create some computational art!
     # TODO: Un-comment the generate_art function call after you
     #       implement remap_interval and evaluate_random_function
-    generate_art("testwooo.png")
+    generate_art("test.png")
 
     # Test that PIL is installed correctly
     # TODO: Comment or remove this function call after testing PIL install

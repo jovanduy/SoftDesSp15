@@ -1,2 +1,2 @@
 # SoftDesSp15
-The base repository for Olin's Software Design 2015 course.
+Jordan Van Duyne's repository for Olin's Software Design 2015 course.
