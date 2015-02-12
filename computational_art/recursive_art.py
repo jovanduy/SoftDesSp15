@@ -25,20 +25,6 @@ def build_random_function(min_depth, max_depth):
     if i < 2:
         return [functions[i], build_random_function(num-1, num-1), build_random_function(num-1, num-1)]
     return [functions[i], build_random_function(num-1, num-1)]
-    # result = []
-    # functions = {0: "prod", 1: "avg", 2: "cos_pi", 3:"sin_pi", 4: "x^2", 5:"y^2", 6:"x", 7: "y"}
-    # if min_depth == max_depth:
-    #     num = min_depth
-    # else:
-    #     num = random.randint(min_depth, max_depth)
-    # if num == 1:
-    #     result.append(functions[random.randint(6,7)])
-    # else:
-    #     func = functions[random.randint(0,5)]
-    #     result.append(func)
-    #     result.append(build_random_function(num-1, num-1))
-    #     result.append(build_random_function(num-1, num-1))
-    # return result
 
 
 def evaluate_random_function(f, x, y):
@@ -54,6 +40,10 @@ def evaluate_random_function(f, x, y):
         -0.5
         >>> evaluate_random_function(["y"],0.1,0.02)
         0.02
+        >>> evaluate_random_function(["prod", ["x"], ["y"]], 1, .1)
+        0.1
+        >>> evaluate_random_function(["prod", ["cos_pi", ["x"]], ["avg", ["x"], ["y"]]], 0, 1)
+        0.5
     """
     # TODO: implement this
     func = f[0]
@@ -76,55 +66,6 @@ def evaluate_random_function(f, x, y):
         if function < 0:
             return -math.sqrt(abs(function))
         return math.sqrt(function)
-
-    #list_dict = {["prod"]: x*y, ["avg"]: .5*(x+y), ["cos_pi"]: math.cos(math.pi*x), ["sin_pi"]: math.sin(math.pi*x), ["x^2"]: x**2, ["y^2"]: y**2, ["x"]: x, ["y"]: y}
-    # str_dict = {"prod": x*y, "avg": .5*(x+y), "cos_pi": math.cos(math.pi*x), "sin_pi": math.sin(math.pi*x), "x^2": x**2, "y^2": y**2, "x": x, "y": y}
-    # if isinstance(f, list):
-    #     if len(f) > 1:
-    #         func = f[0]
-    #         x_func = f[1]
-    #         y_func = f[2]
-    #         return evaluate_random_function(func, evaluate_random_function(x_func, x, y), evaluate_random_function(y_func, x, y))
-    #     elif len(f) == 1:
-    #         # return list_dict[f]
-    #         # print "list"
-    #         if f == ["prod"]:
-    #             return x*y
-    #         elif f == ["avg"]:
-    #             return .5*(x+y)
-    #         elif f == ["cos_pi"]:
-    #             return math.cos(math.pi*x)
-    #         elif f == ["sin_pi"]:
-    #             return math.sin(math.pi*x)
-    #         elif f == ["x^2"]:
-    #             return x**2
-    #         elif f == ["y^2"]:
-    #             return y**2
-    #         elif f == ["x"]:
-    #             return x
-    #         elif f == ["y"]:
-    #             return y
-    # elif isinstance(f, str):
-    #     # print "str"
-    #     # return str_dict[f]
-    #     if f == "prod":
-    #         return x*y
-    #     elif f == "avg":
-    #         return .5*(x+y)
-    #     elif f == "cos_pi":
-    #         return math.cos(math.pi*x)
-    #     elif f == "sin_pi":
-    #         return math.sin(math.pi*x)
-    #     elif f == "x^2":
-    #         return x**2
-    #     elif f == "y^2":
-    #         return y**2
-    #     elif f == "x":
-    #         return x
-    #     elif f == "y":
-    #         return y
-    # else: 
-    #     print "lol you fail :("
 
 
 def remap_interval(val, input_interval_start, input_interval_end, output_interval_start, output_interval_end):
@@ -234,7 +175,7 @@ if __name__ == '__main__':
     # Create some computational art!
     # TODO: Un-comment the generate_art function call after you
     #       implement remap_interval and evaluate_random_function
-    generate_art("test.png")
+    generate_art("myart.png"
 
     # Test that PIL is installed correctly
     # TODO: Comment or remove this function call after testing PIL install
