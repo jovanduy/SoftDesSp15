@@ -17,20 +17,28 @@ def build_random_function(min_depth, max_depth):
                  these functions)
     """
     # TODO: implement this
-    result = []
-    functions = {0: "prod", 1: "avg", 2: "cos_pi", 3:"sin_pi", 4: "x^2", 5:"y^2", 6:"x", 7: "y"}
-    if min_depth == max_depth:
-        num = min_depth
-    else:
-        num = random.randint(min_depth, max_depth)
-    if num == 1:
-        result.append(functions[random.randint(6,7)])
-    else:
-        func = functions[random.randint(0,7)]
-        result.append(func)
-        result.append(build_random_function(num-1, num-1))
-        result.append(build_random_function(num-1, num-1))
-    return result
+    functions = {0: "prod", 1: "avg", 2: "cos_pi", 3:"sin_pi", 4: "x^2", 5:"sqrt", 6:"x", 7: "y"}
+    if max_depth == 1:
+        return [functions[random.randint(6,7)]]
+    num = random.randint(min_depth, max_depth)
+    i = random.randint(0,5)
+    if i < 2:
+        return [functions[i], build_random_function(num-1, num-1), build_random_function(num-1, num-1)]
+    return [functions[i], build_random_function(num-1, num-1)]
+    # result = []
+    # functions = {0: "prod", 1: "avg", 2: "cos_pi", 3:"sin_pi", 4: "x^2", 5:"y^2", 6:"x", 7: "y"}
+    # if min_depth == max_depth:
+    #     num = min_depth
+    # else:
+    #     num = random.randint(min_depth, max_depth)
+    # if num == 1:
+    #     result.append(functions[random.randint(6,7)])
+    # else:
+    #     func = functions[random.randint(0,5)]
+    #     result.append(func)
+    #     result.append(build_random_function(num-1, num-1))
+    #     result.append(build_random_function(num-1, num-1))
+    # return result
 
 
 def evaluate_random_function(f, x, y):
@@ -48,54 +56,57 @@ def evaluate_random_function(f, x, y):
         0.02
     """
     # TODO: implement this
-    if isinstance(f, list) and len(f) > 1:
-        func = f[0]
-        x_func = f[1]
-        y_func = f[2]
-        return evaluate_random_function(func, evaluate_random_function(x_func, x, y), evaluate_random_function(y_func, x, y))
-    elif isinstance(f, str):
-        if f == "prod":
-            return x*y
-        elif f == "avg":
-            return .5*(x+y)
-        elif f == "cos_pi":
-            return math.cos(math.pi*x)
-        elif f == "sin_pi":
-            return math.sin(math.pi*x)
-        elif f == "x^2":
-            return x**2
-        elif f == "y^2":
-            return y**2
-        elif f == "x":
-            return x
-        elif f == "y":
-            return y
-    elif isinstance(f, list) and (len(f) == 1):
-        if f == ["prod"]:
-            return x*y
-        elif f == ["avg"]:
-            return .5*(x+y)
-        elif f == ["cos_pi"]:
-            return math.cos(math.pi*x)
-        elif f == ["sin_pi"]:
-            return math.sin(math.pi*x)
-        elif f == "x^2":
-            return x**2
-        elif f == "y^2":
-            return y**2
-        elif f == ["x"]:
-            return x
-        elif f == ["y"]:
-            return y
-    else: 
-        print "lol you fail :("
-    # if type(f) is list:
-    #     func = f[0]
-    #     print func, type(f)
-    # if type(f) is str:
-    #     func = f
-    #     print func, type(func)
-    # if type(f) is str:
+    func = f[0]
+    if func == "x":
+        return x
+    elif func == "y":
+        return y
+    if func == "prod":
+        return evaluate_random_function(f[1], x, y) * evaluate_random_function(f[2], x, y)
+    elif func == "avg":
+        return .5 * (evaluate_random_function(f[1], x, y)+ evaluate_random_function(f[2], x, y))
+    elif func == "cos_pi":
+        return math.cos(math.pi*evaluate_random_function(f[1], x, y))
+    elif func == "sin_pi":
+        return math.sin(math.pi*evaluate_random_function(f[1], x, y))
+    elif func == "x^2":
+        return evaluate_random_function(f[1], x, y)**2
+    elif func == "sqrt":
+        function = evaluate_random_function(f[1], x, y)
+        if function < 0:
+            return -math.sqrt(abs(function))
+        return math.sqrt(function)
+
+    #list_dict = {["prod"]: x*y, ["avg"]: .5*(x+y), ["cos_pi"]: math.cos(math.pi*x), ["sin_pi"]: math.sin(math.pi*x), ["x^2"]: x**2, ["y^2"]: y**2, ["x"]: x, ["y"]: y}
+    # str_dict = {"prod": x*y, "avg": .5*(x+y), "cos_pi": math.cos(math.pi*x), "sin_pi": math.sin(math.pi*x), "x^2": x**2, "y^2": y**2, "x": x, "y": y}
+    # if isinstance(f, list):
+    #     if len(f) > 1:
+    #         func = f[0]
+    #         x_func = f[1]
+    #         y_func = f[2]
+    #         return evaluate_random_function(func, evaluate_random_function(x_func, x, y), evaluate_random_function(y_func, x, y))
+    #     elif len(f) == 1:
+    #         # return list_dict[f]
+    #         # print "list"
+    #         if f == ["prod"]:
+    #             return x*y
+    #         elif f == ["avg"]:
+    #             return .5*(x+y)
+    #         elif f == ["cos_pi"]:
+    #             return math.cos(math.pi*x)
+    #         elif f == ["sin_pi"]:
+    #             return math.sin(math.pi*x)
+    #         elif f == ["x^2"]:
+    #             return x**2
+    #         elif f == ["y^2"]:
+    #             return y**2
+    #         elif f == ["x"]:
+    #             return x
+    #         elif f == ["y"]:
+    #             return y
+    # elif isinstance(f, str):
+    #     # print "str"
+    #     # return str_dict[f]
     #     if f == "prod":
     #         return x*y
     #     elif f == "avg":
@@ -104,20 +115,16 @@ def evaluate_random_function(f, x, y):
     #         return math.cos(math.pi*x)
     #     elif f == "sin_pi":
     #         return math.sin(math.pi*x)
+    #     elif f == "x^2":
+    #         return x**2
+    #     elif f == "y^2":
+    #         return y**2
     #     elif f == "x":
     #         return x
     #     elif f == "y":
     #         return y
-    #     else:
-    #         return "lol wut none of these"
-    # x_func = f[1]
-    # y_func = f[2]
-    # return evaluate_random_function(func, evaluate_random_function(x_func, x, y), evaluate_random_function(y_func, x, y))
-    # x_func = f[1]
-    # entire_x = []
-    # if len(x_func) == 1:
-    #     return x_func
-    # entire_x.append(evaluate_random_function())
+    # else: 
+    #     print "lol you fail :("
 
 
 def remap_interval(val, input_interval_start, input_interval_end, output_interval_start, output_interval_end):
@@ -200,9 +207,9 @@ def generate_art(filename, x_size=350, y_size=350):
     # red_function = ["x"]
     # green_function = ["y"]
     # blue_function = ["x"]
-    red_function = build_random_function(10, 15)
-    green_function = build_random_function(10, 15)
-    blue_function = build_random_function(10, 15)
+    red_function = build_random_function(7, 9)
+    green_function = build_random_function(7, 9)
+    blue_function = build_random_function(7, 9)
 
     # Create image and loop over all pixels
     im = Image.new("RGB", (x_size, y_size))
