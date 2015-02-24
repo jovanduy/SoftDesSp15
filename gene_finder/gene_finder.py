@@ -37,7 +37,7 @@ def get_complement(nucleotide):
     >>> get_complement('G')
     'C'
     """
-    # TODO: implement this
+    # TODO: implement this   <--Delete unncessary code for final turn in
     complements = {'A': 'T', 'T': 'A', 'C': 'G', 'G':'C'}
     return complements[nucleotide]
 
@@ -61,7 +61,6 @@ def get_reverse_complement(dna):
     for i in range(len(dna)):
         reverse_complement = get_complement(dna[i]) + reverse_complement
     return reverse_complement
-    #return ''.join([get_complement(dna[i]) for i in range(len(dna))].reverse())
 
 def rest_of_ORF(dna):
     """ Takes a DNA sequence that is assumed to begin with a start codon and returns
@@ -82,10 +81,10 @@ def rest_of_ORF(dna):
     # TODO: implement this
     orf = dna[0:3]
     i = 3
-    while i < len(dna):
+    while i < len(dna): #While loops are cool, but for loops are better because we can avoid infinite loops
         codon = dna[i:i+3]
         if (codon == 'TAG') or (codon == 'TAA') or (codon == 'TGA'):
-            break
+            return orf #break works, but you could also just return
         orf += codon
         i += 3
     return orf
@@ -141,8 +140,7 @@ def find_all_ORFs(dna):
         for j in range(len(orf_list)):
             orfs.append(orf_list[j])
     return orfs
-    # return [find_all_ORFs_oneframe(dna[i:])[j] for i in range(3) for j in range(len(find_all_ORFs_oneframe(dna[i:])))]
-
+    
 def find_all_ORFs_both_strands(dna):
     """ Finds all non-nested open reading frames in the given DNA sequence on both
         strands.
@@ -194,13 +192,6 @@ def longest_ORF_noncoding(dna, num_trials):
         it returns the length of the longest ORF over all trials (and it passed 
         this test).
     """
-    # TODO: implement this
-    # ORF = ''
-    # for i in range(num_trials):
-    #     shuffled = longest_ORF(shuffle_string(dna))
-    #     if len(shuffled) > len(ORF):
-    #         ORF = shuffled
-    # return shuffled
     length = 0
     for i in range(num_trials):
         shuffled = longest_ORF(shuffle_string(dna))
@@ -226,7 +217,7 @@ def coding_strand_to_AA(dna):
         one more nucleotide than a multiple of three in the input ORF (the first 
         test's input ORF has length that is a multiple of 3, the second test's input 
         has length of a multiple of three plus two, while this third test's input 
-        will have length of a multiple of three plus one).
+        will have length of a multiple of three plus one).  <--Nice!
         
         >>> coding_strand_to_AA("ATGCCCGCTT")
         'MPA'
