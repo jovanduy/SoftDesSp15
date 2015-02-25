@@ -1,4 +1,4 @@
-""" @author: Jordan Van Duyne """
+""" @author: Jordan Van Duyne """ #Next time try to have a more informative header comment, good coding practice
 
 import random
 import math
@@ -16,8 +16,8 @@ def build_random_function(min_depth, max_depth):
                  (see assignment writeup for details on the representation of
                  these functions)
     """
-    # TODO: implement this
-    functions = {0: "prod", 1: "avg", 2: "cos_pi", 3:"sin_pi", 4: "x^2", 5:"sqrt", 6:"x", 7: "y"}
+    # TODO: implement this  <--Delete uncessary lines
+    functions = {0: "prod", 1: "avg", 2: "cos_pi", 3:"sin_pi", 4: "x^2", 5:"sqrt", 6:"x", 7: "y"} #nice use of dictionary
     if max_depth == 1:
         return [functions[random.randint(6,7)]]
     num = random.randint(min_depth, max_depth)
@@ -63,7 +63,7 @@ def evaluate_random_function(f, x, y):
         return evaluate_random_function(f[1], x, y)**2
     elif func == "sqrt":
         function = evaluate_random_function(f[1], x, y)
-        if function < 0:
+        if function < 0: #Nice error catching!
             return -math.sqrt(abs(function))
         return math.sqrt(function)
 
@@ -95,8 +95,9 @@ def remap_interval(val, input_interval_start, input_interval_end, output_interva
     if (input_interval_end - input_interval_start) == 0:
         return output_interval_start
     return ((val - input_interval_start) * (output_interval_end - output_interval_start) / float(input_interval_end - input_interval_start) + output_interval_start)
-
-
+    return ((val - input_interval_start) * (output_interval_end - output_interval_start)./(input_interval_end - input_interval_start) + output_interval_start)
+    #Period before division sign works too
+    
 def color_map(val):
     """ Maps input value between -1 and 1 to an integer 0-255, suitable for
         use as an RGB color code.
@@ -172,7 +173,7 @@ if __name__ == '__main__':
     import doctest
     doctest.testmod()
 
-    # Create some computational art!
+    # Create some computational art! <--Delete unecessary code
     # TODO: Un-comment the generate_art function call after you
     #       implement remap_interval and evaluate_random_function
     generate_art("myart.png")
