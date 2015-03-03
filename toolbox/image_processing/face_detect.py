@@ -19,27 +19,15 @@ while(True):
 		cv2.circle(frame, (2*w/3+x, h/3+y), w/20, WHITE, (5/3)*(w/14))
 		cv2.circle(frame, (w/3+x, h/3+y), w/45, BLACK, (5/3)*(w/18))
 		cv2.circle(frame, (2*w/3+x, h/3+y), w/45, BLACK, (5/3)*(w/18))
-		## Only an arc from an ellipse ##
+		## Only an arc from an ellipse for :) face ##
 		cv2.ellipse(frame, (w/2+x, 2*h/3+y), (w/3, w/7), 0, 10, 170, BLACK, (4/3)*(w/30))
-		## Complete ellipse ##
+		## Complete ellipse for :O face ##
 		# cv2.ellipse(frame, ((w/2+x, 3*h/4+y), (w/3, w/7), 0), BLACK, 5)
-
-		# Draws a rectangle
-		# cv2.rectangle(frame,(x,y),(x+w,y+h),(0,0,255))
 
     # Display the resulting frame
 	cv2.imshow('frame', frame)
 	if cv2.waitKey(1) & 0xFF == ord('q'):
 		break
-
-    ### Grayscale stuff###
-	# # Our operations on the frame come here
-	# gray = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
-
-	# # Display the resulting frame
-	# cv2.imshow('frame',gray)
-	# if cv2.waitKey(1) & 0xFF == ord('q'):
-	# 	break
 
 # When everything done, release the capture
 cap.release()
