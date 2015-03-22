@@ -43,7 +43,7 @@ def new_text(num_words):
 
     returns: string containing all words of the new text
     """
-    global prefix_to_suffix
+    global prefix_to_suffix #don't have to do this, you aren't re-writing the global dictionary
     prefix = random.choice(prefix_to_suffix.keys())
     s = ''
     for element in prefix:
