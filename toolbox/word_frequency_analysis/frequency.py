@@ -9,10 +9,6 @@ def get_word_list(file_name):
 		returns a list of the words used in the book as a list.
 		All words are converted to lower case.
 	"""
-	# with open(file_name, 'r') as fp:
-	# 	for line in fp:
-	# 		if line.startswith('*END*THE SMALL PRINT!'):
-	# 			break
 	f = open(file_name,'r')
 	lines = f.readlines()
 	curr_line = 0
@@ -25,6 +21,7 @@ def get_word_list(file_name):
 			word = string.lower(word)
 			word = ''.join(char for char in word if char not in string.punctuation)
 			word_list.append(word)
+	f.close()
 	return word_list
 		
 
