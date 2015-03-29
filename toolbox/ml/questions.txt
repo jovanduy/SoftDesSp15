@@ -1,0 +1,23 @@
+1. What is the general trend in the curve?
+	The general trend is that as the percentage of data used for training
+	increases, the accuracy on the test set increases linearlly (emphasis 
+	on general trend).
+
+2. Are there parts of the curve that appear to be noisier than others? Why?
+	Yes, some parts are noisier than others. This is because since the
+	number of trials is so low, the chance that the few trials that were run
+	were close to that the expected value should be is relatively low (meaning
+	that there is a higher chance for error).
+
+3. How many trials do you need to get a smooth curve?
+	At around 15 and above trials the amount of noise is relatively trivial,
+	and at around 500 and above trials there is almost no noise and the curve
+	is basically smooth. 
+
+4. Try different values for C. What happens?
+	If the power of C is a small negative number (-3 for example), then the 
+	curve quickly approaches accuracy on test set = ~.95 and then stays 
+	relatively constant. If the power of C is a large negative number (-20 
+	for example), then the curve quickly approaches accuracy on test set = 
+	~.10 and then stays relatively constant. If the power of C = ~ -10, then
+	the accuracy on test set generally increases linearlly. 
